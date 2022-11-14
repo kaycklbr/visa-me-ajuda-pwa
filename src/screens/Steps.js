@@ -17,10 +17,8 @@ const Steps = () => {
 
   const { state } = useLocation();
 
-  console.log(state);
 
-
-  const isMobile = navigator.userAgentData.mobile;
+  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
   return (
     isMobile ?

@@ -17,7 +17,7 @@ const Trail = ({ route }) => {
   const { state } = useLocation();
 
 
-  const isMobile = navigator.userAgentData.mobile;
+  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
 
   return (
