@@ -9,12 +9,12 @@ export const HeaderHome = ({ title, subtitle }) => {
     <>
       <HomeTopBackground style={{height: 200, zIndex: 'unset'}}>
         <BackgroundDivider/>
-        <Navbar/>
+        <Navbar back={!!title}/>
 
         {title ?
         <TitleContainer>
           <Title style={{color: '#FF8A00'}}>{title}</Title>
-          <Title style={{fontSize: 13, color: 'white', lineHeight: '0px'}}>{subtitle}</Title>
+          <Title style={{fontSize: 13, color: 'white', lineHeight: '0px', marginTop: -8}}>{subtitle}</Title>
         </TitleContainer>
         :
         <Searchbar />

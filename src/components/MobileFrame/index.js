@@ -5,7 +5,10 @@ export const MobileFrame = ({children}) => {
   return (
     <FrameContainer>
       <FrameStatusBar/>
+      <div style={{zIndex: 10}}>
       {children}
+
+      </div>
     </FrameContainer>
   );
 

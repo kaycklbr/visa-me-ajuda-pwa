@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { ChevronRight } from 'react-feather';
+import { useNavigate } from 'react-router-dom';
 import { Button, Container, Content, HomeTopBackground, HomeTopSection, Line, Title } from '../components';
 import BackgroundDivider from '../components/BackgroundDivider';
 import { Card } from '../components/Card';
@@ -9,8 +10,12 @@ import MobileFrame from '../components/MobileFrame';
 import { Navbar } from '../components/Navbar';
 import { Searchbar } from '../components/Searchbar';
 import { Trilha } from '../services/Trilha';
+import { WebContainer } from './WebContainer';
 
 const Home = () => {
+
+  const [ trails, setTrails ] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(()=>{
     getTrails();
@@ -19,54 +24,42 @@ const Home = () => {
 
   const getTrails = async () => {
     try{
-      const res = await Trilha.get();
-      console.log(res);
+      const {data:res} = await Trilha.get();
+      setTrails(res)
     }catch(error){
       console.log(error);
     }
   }
 
+  const isMobile = useRef(navigator.userAgentData.mobile);
+
+
 
   return (
-    <Container>
-      <HomeTopSection>
-        <HomeTopBackground>
-          <BackgroundDivider/>
-          <FlexPanel>
-            <Content style={{paddingTop: '3rem'}}>
-              <Line>
-                <img src={require('../images/visa.png')} width={100} />
-                <span style={{fontWeight: '500', color: 'white', marginLeft: 10}}>Me ajuda!</span>
-              </Line>
+    isMobile.current ?
 
-              <p style={{marginTop: '5rem', color: 'white', fontWeight: 500, fontSize: 34}}>
-                Precisa de ajuda? Nunca passe dificuldades para tirar dúvidas da sua viagem com segurança!
-              </p>
+    (<Container>
 
-              <Button style={{marginTop: '3rem'}}>Use o App<ChevronRight size={18} style={{marginLeft: 10}} /></Button>
-            </Content>
-            <Content style={{display: 'flex', justifyContent: 'center'}}>
-              <MobileFrame>
+      <HeaderHome/>
+      <div style={{margin: '.75rem', marginTop: '1rem'}}>
+        <Title>Siga uma trilha</Title>
+        {trails.map((t) =>{
+          return <Card onClick={()=>navigate('/trilha', { state: {trail: t} })} image={t.imagem || 'https://img.freepik.com/vetores-premium/ilustracao-de-icone-de-aviao-de-ar_138676-278.jpg'} title={t.titulo} subtitle={t.descricao} />
+        })}
+      </div>
 
-                <HeaderHome/>
+    </Container>)
+    :
+    (<WebContainer>
+      <HeaderHome/>
 
-
-                <div style={{margin: '.75rem', marginTop: '1rem'}}>
-                  <Title>Siga uma trilha</Title>
-                  <Card image={'https://img.freepik.com/vetores-premium/ilustracao-de-icone-de-aviao-de-ar_138676-278.jpg'} title={'Fazendo programa'} subtitle={'Testando descrição do programa'} />
-                  <Card image={'https://img.freepik.com/vetores-premium/ilustracao-de-icone-de-aviao-de-ar_138676-278.jpg'} title={'Fazendo programa'} subtitle={'Testando descrição do programa'} />
-                  <Card image={'https://img.freepik.com/vetores-premium/ilustracao-de-icone-de-aviao-de-ar_138676-278.jpg'} title={'Fazendo programa'} subtitle={'Testando descrição do programa'} />
-                </div>
-
-              </MobileFrame>
-            </Content>
-          </FlexPanel>
-        </HomeTopBackground>
-        
-        
-      </HomeTopSection>
-
-    </Container>
+      <div style={{margin: '.75rem', marginTop: '1rem'}}>
+        <Title>Siga uma trilha</Title>
+        {trails.map((t, i) =>{
+          return <Card key={i} onClick={()=>navigate('/trilha', { state: {trail: t} })} image={t.imagem || 'https://img.freepik.com/vetores-premium/ilustracao-de-icone-de-aviao-de-ar_138676-278.jpg'} title={t.titulo} subtitle={t.descricao} />
+        })}
+      </div>
+    </WebContainer>)
   );
 }
 

@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 export const FrameContainer = styled.div`
   overflow: hidden;
+  overflow-y: visible;
   width: 320px;
   aspect-ratio: 9/16;
   margin-top: 2rem;
@@ -14,6 +15,7 @@ export const FrameContainer = styled.div`
   box-shadow: 5px 0px 15px #00000022;
   display: flex;
   flex-direction: column;
+  z-index: 2;
 `;
 
 export const FrameStatusBar = styled.div`

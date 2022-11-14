@@ -13,7 +13,7 @@ export const Card = ({ onClick, step = null, image, title, subtitle }) => {
       {step !== null &&
         <Step>{step+1}° passo</Step>
       }
-      <CardContainer onClick={()=>onClick ? onClick() : navigate('/trilha')}>
+      <CardContainer onClick={()=>onClick && onClick()}>
         {step !== null && <LineDash />}
         <img src={image} />
         <div style={{flex: 1, padding: 5}}>

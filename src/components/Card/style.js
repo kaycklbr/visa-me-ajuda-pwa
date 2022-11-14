@@ -20,8 +20,11 @@ export const CardContainer = styled.div`
     object-fit: contain;
   }
 
+  p{
+    margin: 0
+  }
+
   .title {
-    line-height: 0px;
     font-size: 13px;
     color: #FF8A00;
     font-weight: 600;

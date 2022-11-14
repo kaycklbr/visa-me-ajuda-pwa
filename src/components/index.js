@@ -11,7 +11,6 @@ export const HomeTopSection = styled.div`
 export const HomeTopBackground= styled.div`
   background: linear-gradient(45deg, #0C3785, #178bd3);
   position: relative;
-  z-index: -1;
   top: 0;
   left: 0;
   width: 100%;
@@ -46,4 +45,5 @@ export const Title = styled.h3`
   position: relative;
 `
 
-export const Container = styled.div``;
+export const Container = styled.div`
+`;
