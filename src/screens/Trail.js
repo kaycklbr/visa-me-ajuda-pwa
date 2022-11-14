@@ -16,9 +16,6 @@ const Trail = ({ route }) => {
 
   const { state } = useLocation();
 
-  useEffect(()=>{
-    console.log(state.trail);
-  }, [])
 
   const isMobile = navigator.userAgentData.mobile;
 
@@ -28,13 +25,13 @@ const Trail = ({ route }) => {
 
     <Container>
 
-      <HeaderHome title={'Fazendo programa'} subtitle={'Teste fazendo programa descrição'} />
+      <HeaderHome title={state.trail.titulo} subtitle={state.trail.descricao} />
 
 
       <div style={{margin: '.75rem', marginTop: '1rem'}}>
         <Title style={{color: '#FF8A00'}}>Em qual passo você está?</Title>
         {state.trail.mapa_set.map(m => {
-          return <Card onClick={()=>navigate('/passos', { state: {passos: m.passo_set}})} image={ m.imagem || 'https://img.freepik.com/vetores-premium/ilustracao-de-icone-de-aviao-de-ar_138676-278.jpg'} title={m.titulo} subtitle={m.descricao} />
+          return <Card onClick={()=>navigate('/passos', { state: {passos: m}})} image={ m.imagem || 'https://img.freepik.com/vetores-premium/ilustracao-de-icone-de-aviao-de-ar_138676-278.jpg'} title={m.titulo} subtitle={m.descricao} />
         })}
         </div>
     </Container>
@@ -42,13 +39,13 @@ const Trail = ({ route }) => {
     :
 
     <WebContainer>
-      <HeaderHome title={'Fazendo programa'} subtitle={'Teste fazendo programa descrição'} />
+      <HeaderHome title={state.trail.titulo} subtitle={state.trail.descricao} />
 
 
       <div style={{margin: '.75rem', marginTop: '1rem'}}>
         <Title style={{color: '#FF8A00'}}>Em qual passo você está?</Title>
         {state.trail.mapa_set.map(m => {
-          return <Card onClick={()=>navigate('/passos', { state: {passos: m.passo_set}})} image={ m.imagem || 'https://img.freepik.com/vetores-premium/ilustracao-de-icone-de-aviao-de-ar_138676-278.jpg'} title={m.titulo} subtitle={m.descricao} />
+          return <Card onClick={()=>navigate('/passos', { state: {passos: m}})} image={ m.imagem || 'https://img.freepik.com/vetores-premium/ilustracao-de-icone-de-aviao-de-ar_138676-278.jpg'} title={m.titulo} subtitle={m.descricao} />
         })}
         </div>
     </WebContainer>

@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { ChevronRight } from 'react-feather';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Button, Container, Content, HomeTopBackground, HomeTopSection, Line, Title } from '../components';
@@ -17,22 +17,23 @@ const Steps = () => {
 
   const { state } = useLocation();
 
+  console.log(state);
+
 
   const isMobile = navigator.userAgentData.mobile;
-
 
   return (
     isMobile ?
 
     <Container>
 
-      <HeaderHome title={'Fazendo programa'} subtitle={'Teste fazendo programa descrição'} />
+      <HeaderHome title={state.passos.titulo} subtitle={state.passos.descricao} />
 
 
       <div style={{margin: '.75rem', marginTop: '1rem'}}>
         <Title style={{color: '#FF8A00'}}>Em qual passo você está?</Title>
-        {state.passos.map((p, index) =>{
-          return <Card step={index} numberSteps={state.passos.length} image={p.imagem || 'https://img.freepik.com/vetores-premium/ilustracao-de-icone-de-aviao-de-ar_138676-278.jpg'} title={p.titulo} subtitle={p.descricao} />
+        {state.passos.passo_set.map((p, index) =>{
+          return <Card step={index} numberSteps={state.passos.passo_set.length} image={p.imagem || 'https://img.freepik.com/vetores-premium/ilustracao-de-icone-de-aviao-de-ar_138676-278.jpg'} title={p.titulo} subtitle={p.descricao} />
 
         })}
       </div>
@@ -42,13 +43,13 @@ const Steps = () => {
     :
 
     <WebContainer>
-      <HeaderHome title={'Fazendo programa'} subtitle={'Teste fazendo programa descrição'} />
+      <HeaderHome title={state.passos.titulo} subtitle={state.passos.descricao} />
 
 
       <div style={{margin: '.75rem', marginTop: '1rem'}}>
         <Title style={{color: '#FF8A00'}}>Em qual passo você está?</Title>
-        {state.passos.map((p, index) =>{
-          return <Card step={index} numberSteps={state.passos.length} image={p.imagem || 'https://img.freepik.com/vetores-premium/ilustracao-de-icone-de-aviao-de-ar_138676-278.jpg'} title={p.titulo} subtitle={p.descricao} />
+        {state.passos.passo_set.map((p, index) =>{
+          return <Card step={index} numberSteps={state.passos.passo_set.length} image={p.imagem || 'https://img.freepik.com/vetores-premium/ilustracao-de-icone-de-aviao-de-ar_138676-278.jpg'} title={p.titulo} subtitle={p.descricao} />
 
         })}
       </div>

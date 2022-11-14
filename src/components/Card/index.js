@@ -3,7 +3,7 @@ import { Container } from "..";
 import { CardContainer, LineDash, Step } from "./style"
 
 
-export const Card = ({ onClick, step = null, image, title, subtitle }) => {
+export const Card = ({ onClick, step = null, numberSteps, image, title, subtitle }) => {
 
   const navigate = useNavigate();
 
@@ -14,7 +14,7 @@ export const Card = ({ onClick, step = null, image, title, subtitle }) => {
         <Step>{step+1}° passo</Step>
       }
       <CardContainer onClick={()=>onClick && onClick()}>
-        {step !== null && <LineDash />}
+        {step !== null && numberSteps -1 != step && <LineDash />}
         <img src={image} />
         <div style={{flex: 1, padding: 5}}>
           <p className="title">{title}</p>

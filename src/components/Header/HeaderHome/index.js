@@ -5,16 +5,17 @@ import { Searchbar } from "../../Searchbar"
 import { TitleContainer } from "./style"
 
 export const HeaderHome = ({ title, subtitle }) => {
+  console.log(title, subtitle)
   return (
     <>
-      <HomeTopBackground style={{height: 200, zIndex: 'unset'}}>
+      <HomeTopBackground style={{height: 'auto', paddingBottom: '1rem', zIndex: 'unset'}}>
         <BackgroundDivider/>
         <Navbar back={!!title}/>
 
         {title ?
         <TitleContainer>
           <Title style={{color: '#FF8A00'}}>{title}</Title>
-          <Title style={{fontSize: 13, color: 'white', lineHeight: '0px', marginTop: -8}}>{subtitle}</Title>
+          <Title style={{fontSize: 13, color: 'white', marginTop: -8}}>{subtitle}</Title>
         </TitleContainer>
         :
         <Searchbar />
